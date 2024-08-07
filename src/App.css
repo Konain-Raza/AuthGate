@@ -1,0 +1,145 @@
+#root{
+  width: 100%;
+  height: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+#main{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: red;
+
+}
+#left-content{
+  width: 50%;
+  position: relative;
+  background-color: #2C73EB;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#left-content>img{
+  width: 65%;
+  object-fit: contain;
+}
+#right-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.auth-form{
+  width: max-content;
+  margin: auto;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1vh;
+}
+#loginform{
+  width: 50%;
+}
+#signupform{
+  width: 80%;
+}
+.input-container{
+  color: #696F79;
+font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1vh;
+}
+#link-form>button{
+  background: transparent;
+  color:#2C73EB;
+  text-decoration: underline;
+  border: none;
+}
+
+input{
+  border-radius: 5px;
+  padding: 15px;
+  border: 1px solid #696F79;
+  outline: none;
+}
+
+#submit-btn{
+  background-color: #2C73EB;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  margin-bottom: 1vh;
+}
+
+#link-form{
+width: 100%;
+display: flex;
+justify-content: center;
+gap: 0.5vw;
+align-items: center;
+}
+
+#auth-form>h2{
+  font-size: 2rem;
+}
+#desc{
+  font-size: 1.1rem;
+  padding-bottom: 2vh;
+color: #8692A6;
+}
+.remember{
+  color: #696F79;
+  font-weight: bold;
+    display: flex;
+    width: 100%;
+    gap: 1vh;
+    padding-bottom: 3vh;
+
+}
+.remember>input{
+  width: 15px;
+}
+
+a{
+  text-decoration: none;
+}
+select{
+  border-radius: 5px;
+  padding: 15px;
+  border: 1px solid #696F79;
+  outline: none;
+}
+
+input:focus{
+  border-color: blue;
+}
+
+#logo>img{
+  margin-left: 2vw;
+  width: 5vw;
+  height: 5vw;
+}
+#name{
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+#logo{
+
+  width: 100%;
+  height: 20%;  
+  align-items: center;
+  top: 0;
+  display: flex;
+  position: absolute;
+}
