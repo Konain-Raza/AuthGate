@@ -1,66 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "../../firebase-config";
+import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "../../firebase-config";
+import useStore from '../../../Store.js'; 
 
 const Form = () => {
-  const [formName, setFormName] = useState("login");
+  const { formname, setFormName } = useStore(state => ({
+    formname: state.formname,
+    setFormName: state.setFormName
+  }));
+
+  const [localFormName, setLocalFormName] = useState(formname);
+
+  useEffect(() => {
+    setLocalFormName(formname);
+    setFormName(localFormName);
+
+  }, [formname]);
+
 
   const toggleForm = (event) => {
     event.preventDefault();
-    setFormName((prevFormName) =>
-      prevFormName === "login" ? "signup" : "login"
-    );
+    setLocalFormName(prev => (prev === "login" ? "signup" : "login"));
   };
-  
+
   const handleLogin = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const email = data.get("email");
     const password = data.get("password");
-    const remember = data.get("rememberme") === null ? "off" : "on";
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        toast.success("Successfully logged in!");
-        event.target.reset()
 
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success("Successfully logged in!");
+        event.target.reset();
       })
       .catch((error) => {
         toast.error(`Error signing in: ${error.message}`);
-      event.target.reset()
-
+        event.target.reset();
       });
   };
-  
+
   const handleSignup = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const email = data.get("email");
     const password = data.get("password");
+
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
         toast.success("Successfully signed up!");
         event.target.reset();
       })
       .catch((error) => {
         toast.error(`Error signing up: ${error.message}`);
-      event.target.reset()
-
+        event.target.reset();
       });
   };
-  
+
   const handleForm = (event) => {
     event.preventDefault();
-    formName === "login" ? handleLogin(event) : handleSignup(event);
+    localFormName === "login" ? handleLogin(event) : handleSignup(event);
   };
-  
-
   return (
     <div>
       {formName === "login" ? (
